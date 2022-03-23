@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 20:18:25 by fgata-va          #+#    #+#             */
-/*   Updated: 2022/03/21 21:20:12 by fgata-va         ###   ########.fr       */
+/*   Updated: 2022/03/23 12:14:14 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,14 @@ int main(int argc, char *argv[], char *const envp[]) {
 	int		fds[2] = {-1, -1};
 	int		tmp = -1;
 
+	(void)argc;
 	argv++;
 	while (*argv) {
 		i = 0;
 		while (argv[i] && strcmp(argv[i], "|") && strcmp(argv[i], ";"))
 			i++;
 		if (!strcmp(*argv, "cd")) {
-			if (i > 2)
+			if (i != 2)
 				ft_puterr("cd:", "bad arguments");
 			else if ((chdir(argv[1])) < 0)
 				ft_puterr("cd: cannot change directory to", argv[1]);

@@ -1,4 +1,7 @@
 gcc -Wall -Werror -Wextra -I. -g microshell.c -o microshell
 if [ $? -eq 0 ]; then
-	exec ./microshell $@
+	./microshell $@
+	status=$?
+	rm -rf microshell microshell.dSYM
+	exit $status
 fi
