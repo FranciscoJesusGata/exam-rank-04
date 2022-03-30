@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 20:18:25 by fgata-va          #+#    #+#             */
-/*   Updated: 2022/03/23 12:14:14 by fgata-va         ###   ########.fr       */
+/*   Updated: 2022/03/30 15:30:27 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_puterr(char *s, char *name) {
 	while (*name)
 		write(2,name++,1);
 	write(2, "\n",1);
-	exit(1);
 }
 
 pid_t	execute(int first, int second, int io, char *argv[], char *const envp[]) {
@@ -36,11 +35,13 @@ pid_t	execute(int first, int second, int io, char *argv[], char *const envp[]) {
 		if (second >= 0) {
 			if ((dup2(second, io)) < 0)
 				ft_puterr("fatal", NULL);
+				exit(1);
 		}
 		if (!(*argv))
 			exit(0);
 		execve(*argv, argv, envp);
 		ft_puterr("cannot execute", *argv);
+		exit(1);
 	}
 	return (pid);
 }
