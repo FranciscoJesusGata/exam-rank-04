@@ -6,7 +6,7 @@
 /*   By: fgata-va <fgata-va@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 20:18:25 by fgata-va          #+#    #+#             */
-/*   Updated: 2022/03/30 15:35:20 by fgata-va         ###   ########.fr       */
+/*   Updated: 2022/03/31 16:33:18 by fgata-va         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,10 @@ int	main(int argc, char *argv[], char *envp[]) {
 		while (argv[i] && strcmp(argv[i], "|") && strcmp(argv[i], ";"))
 			i++;
 		if (!(strcmp(*argv, "cd"))) {
-			if (i != 2) {
-				close(tmp);
+			if (i != 2)
 				ft_puterr("cd:", "bad arguments");
-			} else if ((chdir(argv[1])) < 0) {
-				close(tmp);
+			else if ((chdir(argv[1])) < 0)
 				ft_puterr("cd: cannot change directory to", argv[1]);
-			}
 		}
 		else if (argv[i] && !(strcmp(argv[i], "|"))) {
 			argv[i++] = NULL;
@@ -72,6 +69,7 @@ int	main(int argc, char *argv[], char *envp[]) {
 					close(tmp);
 					close(fds[0]);
 					ft_puterr("fatal", NULL);
+					exit(1);
 				}
 				close(fds[0]);
 			}
